@@ -1,12 +1,18 @@
 import Dependencies._
 
+lazy val akkaVersion = "2.+"
+
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
-      organization := "com.example",
-      scalaVersion := "2.12.1",
-      version      := "0.1.0-SNAPSHOT"
+      organization := "com.eigenroute",
+      scalaVersion := "2.11.11",
+      version      := "0.0.1"
     )),
     name := "Hello",
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= Seq(
+     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
+     "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
+      scalaTest % Test
+    )
   )

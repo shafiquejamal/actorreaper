@@ -9,6 +9,5 @@ spark-warehouse/
 derby.log
 metastore_db/
 .DS_Store
-*.csv
 .ensime
 .ensime_cache/
