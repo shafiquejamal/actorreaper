@@ -1,4 +1,4 @@
-package com.eigenroute.akka.reaper
+package com.github.shafiquejamal.akka.reaper
 
 import akka.actor.Props
 

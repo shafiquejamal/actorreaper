@@ -1,7 +1,7 @@
-package com.eigenroute.akka.reaper
+package com.github.shafiquejamal.akka.reaper
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
-import com.eigenroute.akka.reaper.Reaper.WatchMe
+import Reaper.WatchMe
 
 abstract class WatchedActor(reaper: ActorRef) extends Actor with ActorLogging {
   
