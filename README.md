@@ -1,6 +1,6 @@
 # Actor Reaper
 
-This is an implementation of the reaper pattern as described here:
+This is an implementation of the reaper pattern as described here: [reaper](http://letitcrash.com/post/30165507578/shutdown-patterns-in-akka-2)
 
 I've added a feature, which I describe below.
 
@@ -25,5 +25,15 @@ workToDo.foreach ( workItem => myWorkers ! workItem)
 myWorkers ! Broadcast(PoisonPill)
 ```
 
-After the workers have finished their tasks, `mySaver` and `myPrinter` will be terminated.
+All actors that the reaper should watch must extend `WatchedActor`.
+
+After the workers have finished their tasks, `mySaver` and `myPrinter` will be terminated. After all actors watched actors are terminated, the reaper will shutdown the actor system.
+
+What if you need to close a file handle, or execute some other function when all of the watched actors have finished their work? Pass a collection of these functions as an argument to `ReaperImpl` when creating the reaper:
+
+```scala
+val closeFile = cSVwriter.close _
+val reaper = system.actorOf(ReaperImpl props Seq(closeFile), "reaper") // or val reaper = system.actorOf(ReaperImpl props closeFile, "reaper") 
+``` 
+
 
