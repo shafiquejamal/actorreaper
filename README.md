@@ -4,6 +4,14 @@ This is an implementation of the reaper pattern as described here: [reaper](http
 
 I've added a feature, which I describe below.
 
+## Installation
+
+To use in an SBT project, add the following to `libraryDependencies`
+
+```
+"com.github.shafiquejamal" % "actorreaper_2.11" % "0.0.1"
+```
+
 ## Last Actor Standing
 
 Suppose you create a bunch of actors to do some work (MyWorkers), one actor to save the results (MySaver) and one actor to print the results (MyPrinter). MySaver and MyPrinter should be terminated after all of the MyWorkers mailboxes are empty. To let the reaper know this, you send the message `LastActorStanding(actorRef)` to the reaper. The following code illustrates this:
